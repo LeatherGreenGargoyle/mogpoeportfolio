@@ -1,5 +1,8 @@
 const path = require('path')
 
+const SRC_DIR = path.resolve(__dirname, 'client/index.js')
+const BUILD_DIR = path.resolve(__dirname, 'app/build')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './client/index.html',
@@ -8,9 +11,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
-  entry: './client/index.js',
+  entry: SRC_DIR,
   output: {
-    path: path.resolve('dist'),
+    path: BUILD_DIR,
     filename: 'index_bundle.js'
   },
   module: {
