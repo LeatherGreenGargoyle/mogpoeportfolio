@@ -6,7 +6,7 @@
   "author": "Andrew Tran <avtran23@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./server/server.js",
+    "start": "webpack --watch | nodemon ./server/server.js",
     "test": "mocha --timeout 10000"
   },
   "dependencies": {
