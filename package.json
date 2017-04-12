@@ -6,7 +6,7 @@
   "author": "Andrew Tran <avtran23@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server && SET NODE_ENV=dev",
+    "start": "nodemon ./server/server.js",
     "test": "mocha --timeout 10000"
   },
   "dependencies": {
