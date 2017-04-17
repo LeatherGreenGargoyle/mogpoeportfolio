@@ -1,4 +1,5 @@
 const express = require('express')
+
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -7,7 +8,7 @@ const morgan = require('morgan')
 app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(morgan('short'))
 
-app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.get('/test', (req, res) => {
@@ -20,7 +21,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../app/build/index.html'))
 })
 
-let port = process.env.PORT || 3000
-app.listen(port, function() {
+const port = process.env.PORT || 3000
+app.listen(port, () => {
   console.log('App listening on port:', port)
 })
