@@ -1,3 +1,5 @@
+const ordersRoutes = require('./ordersRoutes.js')
+
 module.exports = app => {
-  app.use('/')
+  app.use('/orders', ordersRoutes)
 }
