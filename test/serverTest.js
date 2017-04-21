@@ -5,7 +5,7 @@ const app = require('../server/server.js')
 // const testUtils = require('./testUtils')
 
 const testSecret = process.env.STRIPE_TEST_SECRET_KEY
-const Stripe = require('stripe')(/*fix .env file*/)
+const Stripe = require('stripe')(testSecret)
 
 describe('Orders API', () => {
   console.log(`Test secret is: ${testSecret}`)
@@ -23,7 +23,7 @@ describe('Orders API', () => {
       if (err) {
         console.log(`Token creation error: ${err}`)
       } else {
-        console.log(`Token object created: ${token}`)
+        console.log(`Token object created, with ID: ${token.id}`)
       }
       tokenTestReqBody.token = token
       done()
