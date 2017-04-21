@@ -13,9 +13,13 @@ app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname, '/../app/build')))
 // app.use(morgan('short'))
 
-app.get('/test', (req, res) => {
-  console.log('test route hit')
+app.get('/getTest', (req, res) => {
+  console.log('get test route hit')
   res.status(200).send('HAI WURLD')
+})
+app.post('/postTest', (req, res) => {
+  console.log(`Post Test, req.body.amount is ${Object.keys(req.body)}`)
+  res.send(req.body)
 })
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../app/build/index.html'))

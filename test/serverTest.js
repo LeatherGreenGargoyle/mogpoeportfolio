@@ -8,8 +8,8 @@ const testSecret = process.env.STRIPE_TEST_SECRET_KEY
 const Stripe = require('stripe')(testSecret)
 
 describe('Orders API', () => {
-  console.log(`Test secret is: ${testSecret}`)
   const tokenTestReqBody = {}
+  tokenTestReqBody.amount = 666
   before(done => {
     Stripe.tokens.create({
       card: {
@@ -25,18 +25,20 @@ describe('Orders API', () => {
       } else {
         console.log(`Token object created, with ID: ${token.id}`)
       }
-      tokenTestReqBody.token = token
+      tokenTestReqBody.stripeToken = token
       done()
     })
   })
 
-  it('should accept a token, and return a success message', () => {
+  it('should accept a token, and return a charge object', () => {
+    console.log(`tokenTestReqBody.stripeToken.id is ${tokenTestReqBody.stripeToken.id}`)
     return request(app)
       .post('/orders/pay')
       .send(tokenTestReqBody)
       .expect(200)
       .expect(res => {
-        expect(res.text).to.equal('Payment received')
+        expect(res.body.charge.id).to.be.a('string')
+        expect(res.body.charge.amount).to.be.equal(666)
       })
   })
 })
