@@ -2,12 +2,12 @@ const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY)
 
 const customer = {
   pay: (req, res) => {
-    console.log(`Serving PAY request, req is: ${req}`)
-    const token = req.stripeToken
-    console.log(`Token is: ${token.id}`)
-    console.log(`Req amount is ${req.amount}`)
+    console.log(`Serving PAY request, number of keys in req.body is: ${Object.keys(req.body)}`)
+    const token = req.body.stripeToken
+    console.log(`Token has keys: ${Object.keys(token)}`)
+    console.log(`Req amount is ${req.body.amount}`)
     stripe.charges.create({
-      amount: req.amount,
+      amount: req.body.amount,
       currency: 'usd',
       source: token,
     }, (err, charge) => {

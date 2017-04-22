@@ -23,7 +23,7 @@ describe('Orders API', () => {
       if (err) {
         console.log(`Token creation error: ${err}`)
       } else {
-        console.log(`Token object created, with ID: ${token.id}`)
+        console.log(`Token object created, with keys: ${Object.keys(token)}`)
       }
       tokenTestReqBody.stripeToken = token
       done()
