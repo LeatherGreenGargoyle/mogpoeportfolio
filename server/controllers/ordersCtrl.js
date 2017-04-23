@@ -9,14 +9,14 @@ const customer = {
     stripe.charges.create({
       amount: req.body.amount,
       currency: 'usd',
-      source: token,
+      source: token.id,
     }, (err, charge) => {
       if (err) {
-        console.log(err)
+        console.log('Charge err: ', err)
         res.send(err)
       }
       if (charge) {
-        console.log(charge)
+        console.log('Charge obj created: ', charge)
         res.send(charge)
       }
     })

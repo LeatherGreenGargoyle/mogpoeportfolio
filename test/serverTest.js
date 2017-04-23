@@ -37,8 +37,13 @@ describe('Orders API', () => {
       .send(tokenTestReqBody)
       .expect(200)
       .expect(res => {
-        expect(res.body.charge.id).to.be.a('string')
-        expect(res.body.charge.amount).to.be.equal(666)
+        // console.log('Test order res is: ', res)
+        const chargeObj = JSON.parse(res.text)
+        console.log('JSON parsed res.text: ', chargeObj)
+        // charge = JSON.parse(res).text
+        // console.log('charge: ', charge)
+        expect(chargeObj.id).to.be.a('string')
+        expect(chargeObj.amount).to.be.equal(666)
       })
   })
 })
