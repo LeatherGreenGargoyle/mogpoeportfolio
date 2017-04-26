@@ -9,6 +9,11 @@
     "start": "webpack --watch | nodemon ./server/server.js",
     "test": "mocha --timeout 10000"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.17.1",
